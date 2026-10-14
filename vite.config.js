@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
+import UnpluginFonts from 'unplugin-fonts/vite';
 
 export default defineConfig({
     plugins: [
@@ -9,6 +10,16 @@ export default defineConfig({
             refresh: true,
         }),
         tailwindcss(),
+        UnpluginFonts({
+            bunny: {
+                families: [
+                    {
+                        name: 'Instrument Sans',
+                        weights: ['400', '500', '600'],
+                    },
+                ],
+            },
+        }),
     ],
     server: {
         watch: {

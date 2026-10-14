@@ -25,23 +25,32 @@
                 <nav class="flex items-center justify-end gap-4">
                     @auth
                         <a
-                            href="{{ url('/dashboard') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                            href="{{ route(auth()->user()->role . '.dashboard') }}"
+                            class="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#1e2d6b] px-5 py-2 font-semibold text-white shadow-sm hover:bg-[#172458]"
                         >
                             Dashboard
                         </a>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button
+                                type="submit"
+                                class="inline-flex min-h-11 items-center justify-center rounded-lg border border-slate-300 bg-white px-5 py-2 font-semibold text-slate-700 hover:bg-slate-50"
+                            >
+                                Logout
+                            </button>
+                        </form>
                     @else
                         <a
                             href="{{ route('login') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal"
+                            class="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#1e2d6b] px-5 py-2 font-semibold text-white shadow-sm hover:bg-[#172458]"
                         >
-                            Log in
+                            Login
                         </a>
 
                         @if (Route::has('register'))
                             <a
                                 href="{{ route('register') }}"
-                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                                class="inline-flex min-h-11 items-center justify-center rounded-lg border border-[#1e2d6b] bg-white px-5 py-2 font-semibold text-[#1e2d6b] hover:bg-slate-50">
                                 Register
                             </a>
                         @endif
