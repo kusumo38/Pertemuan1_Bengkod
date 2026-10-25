@@ -7,6 +7,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -18,7 +19,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
-     * @var list<string> $fillable
+     * @var list<string>
      */
     protected $fillable = [
         'nama',
@@ -29,7 +30,7 @@ class User extends Authenticatable
         'role',
         'id_poli',
         'email',
-        'password'
+        'password',
     ];
 
     /**
@@ -58,8 +59,13 @@ class User extends Authenticatable
         return $this->belongsTo(Poli::class, 'id_poli');
     }
 
-    public function jadwalPeriksas()
+    public function jadwalPeriksas(): HasMany
     {
         return $this->hasMany(JadwalPeriksa::class, 'id_dokter');
+    }
+
+    public function daftarPolis(): HasMany
+    {
+        return $this->hasMany(DaftarPoli::class, 'id_pasien');
     }
 }

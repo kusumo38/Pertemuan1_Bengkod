@@ -33,6 +33,13 @@
                         required>
                     @error('harga')<p class="text-xs text-red-500 mt-1">{{ $message }}</p>@enderror
                 </div>
+                <div class="mb-8">
+                    <label for="stok" class="block text-sm font-semibold text-slate-700 mb-1">Stok <span class="text-red-500">*</span></label>
+                    <input id="stok" type="number" name="stok" value="{{ old('stok', $obat->stok) }}" min="0" step="1"
+                        class="w-full px-4 py-2 rounded-lg border-2 border-slate-300 focus:border-primary focus:outline-none @error('stok') border-red-500 @enderror"
+                        required>
+                    @error('stok')<p class="text-xs text-red-500 mt-1">{{ $message }}</p>@enderror
+                </div>
                 <div class="flex gap-3">
                     <button type="submit" class="px-6 py-2.5 rounded-lg bg-primary hover:bg-primary/90 text-white font-semibold text-sm transition">
                         <i class="fas fa-save mr-1"></i> Simpan Perubahan

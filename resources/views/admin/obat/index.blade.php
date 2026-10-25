@@ -1,11 +1,16 @@
 <x-layouts.app title="Manajemen Obat">
     <div class="flex items-center justify-between mb-6">
         <h2 class="text-2xl font-bold text-slate-800">Manajemen Obat</h2>
-        <a href="{{ route('obat.create') }}"
-            class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary/90 text-white text-sm font-semibold rounded-xl transition">
-            <i class="fas fa-plus text-xs"></i>
-            Tambah Obat
-        </a>
+        <div class="flex gap-2">
+            <a href="{{ route('admin.export.obat') }}" class="inline-flex items-center gap-2 rounded-xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-green-700">
+                <i class="fas fa-file-excel"></i> Export Excel
+            </a>
+            <a href="{{ route('obat.create') }}"
+                class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary/90 text-white text-sm font-semibold rounded-xl transition">
+                <i class="fas fa-plus text-xs"></i>
+                Tambah Obat
+            </a>
+        </div>
     </div>
 
     <div class="card bg-base-100 shadow-md rounded-2xl border border-slate-200">
@@ -16,6 +21,7 @@
                         <tr>
                             <th class="px-6 py-4">Nama Obat</th>
                             <th class="px-6 py-4">Kemasan</th>
+                            <th class="px-6 py-4">Stok</th>
                             <th class="px-6 py-4">Harga</th>
                             <th class="px-6 py-4 text-right">Aksi</th>
                         </tr>
@@ -25,6 +31,7 @@
                             <tr class="border-t border-slate-100 hover:bg-slate-50 transition">
                                 <td class="px-6 py-4 font-semibold text-slate-800">{{ $obat->nama_obat }}</td>
                                 <td class="px-6 py-4">{{ $obat->kemasan }}</td>
+                                <td class="px-6 py-4">{{ $obat->stok }}</td>
                                 <td class="px-6 py-4">Rp {{ number_format($obat->harga, 0, ',', '.') }}</td>
                                 <td class="px-6 py-4 text-right">
                                     <div class="flex justify-end gap-2">
@@ -47,7 +54,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="text-center py-12 text-slate-400">
+                                <td colspan="5" class="text-center py-12 text-slate-400">
                                     <i class="fas fa-inbox text-3xl mb-3 block"></i>
                                     Belum ada data obat
                                 </td>

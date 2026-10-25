@@ -57,3 +57,38 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Poliklinik Fast Track
+
+Fast Track adds a patient queue dashboard with Reverb/Echo live updates, patient registration history, prescription payments and admin verification, database notifications, password changes, and Excel-compatible exports.
+
+### Local setup
+
+The current project manifest targets Laravel 12 and PHP 8.2. Install the dependencies and prepare the environment:
+
+```powershell
+Copy-Item .env.example .env
+composer install
+npm install
+php artisan key:generate
+php artisan migrate
+npm run build
+```
+
+Run the application and its development services with:
+
+```powershell
+composer run dev
+```
+
+The development command starts Laravel, the queue worker, logs, Vite, and the Reverb WebSocket server. Queue broadcasts are asynchronous, so calling a patient still succeeds if Reverb is temporarily unavailable; live updates resume when Reverb is running. To use a separate Reverb server, set `REVERB_HOST` and `REVERB_PORT` to the same host and port used by the server. The example environment uses local Reverb credentials; replace them with unique values outside local development. Payment proof files are stored on Laravel's private local disk and are only served through the admin verification route.
+
+Exports are delivered as Excel-compatible SpreadsheetML `.xls` files, so the export feature does not require PHP's optional GD or ZIP extensions.
+
+### Database updates
+
+Run `php artisan migrate` after pulling the Fast Track changes. New migrations add medicine stock and queue state, payment records, and Laravel's database notifications table. Existing completed examinations are migrated to the completed queue state.
+
+### Laravel version note
+
+The Fast Track brief names Laravel 13, but this repository currently requires Laravel 12 and the available PHP runtime is 8.2. The feature work keeps the existing supported runtime intact rather than attempting an incompatible framework upgrade.

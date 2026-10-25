@@ -16,6 +16,21 @@
         </div>
     </div>
 
+    <a href="{{ route('notifications.index') }}"
+        class="relative btn btn-square btn-ghost" aria-label="Notifikasi">
+        <i class="fas fa-bell"></i>
+        @php($unreadNotificationCount = auth()->user()->unreadNotifications()->count())
+        @if($unreadNotificationCount > 0)
+            <span class="badge badge-error badge-sm absolute -right-1 -top-1 text-white">
+                {{ $unreadNotificationCount > 99 ? '99+' : $unreadNotificationCount }}
+            </span>
+        @endif
+    </a>
+
+    <a href="{{ route('profile.password.edit') }}" class="btn btn-ghost btn-sm">
+        <i class="fas fa-user-gear"></i><span class="hidden sm:inline">Profile</span>
+    </a>
+
     {{-- Fullscreen --}}
     <button onclick="toggleFullscreen()" class="btn btn-square btn-ghost">
         <i id="fsIcon" class="fas fa-expand w-5 h-5"></i>
@@ -26,7 +41,7 @@
 
         <div class="text-right hidden sm:block">
             <div class="text-sm font-semibold leading-tight">
-                {{ auth()->user()->name ?? 'Pengguna' }}
+                {{ auth()->user()->nama ?? 'Pengguna' }}
             </div>
             <div class="text-xs text-base-content/50 leading-tight">
                 {{ auth()->user()->role ?? 'Admin Sistem' }}
@@ -36,7 +51,7 @@
         <div class="avatar">
             <div class="w-10 h-10 rounded-full bg-primary text-primary-content flex items-center justify-center">
                 <span class="text-sm font-semibold leading-none">
-                    {{ strtoupper(substr(auth()->user()->name ?? 'U', 0, 1)) }}
+                    {{ strtoupper(substr(auth()->user()->nama ?? 'U', 0, 1)) }}
                 </span>
             </div>
         </div>

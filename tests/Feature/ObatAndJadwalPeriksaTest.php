@@ -26,6 +26,7 @@ class ObatAndJadwalPeriksaTest extends TestCase
             'nama_obat' => 'Paracetamol',
             'kemasan' => 'Tablet 500 mg',
             'harga' => 5000,
+            'stok' => 30,
         ])->assertRedirect(route('obat.index'))
             ->assertSessionHas('success');
 
@@ -38,15 +39,16 @@ class ObatAndJadwalPeriksaTest extends TestCase
             'nama_obat' => 'Paracetamol Forte',
             'kemasan' => 'Kaplet',
             'harga' => 7500,
+            'stok' => 20,
         ])->assertRedirect(route('obat.index'))
             ->assertSessionHas('success');
 
         $this->assertDatabaseHas('obat', ['id' => $obat->id, 'nama_obat' => 'Paracetamol Forte', 'harga' => 7500]);
 
         $this->from(route('obat.create'))
-            ->post(route('obat.store'), ['nama_obat' => '', 'kemasan' => '', 'harga' => -1])
+            ->post(route('obat.store'), ['nama_obat' => '', 'kemasan' => '', 'harga' => -1, 'stok' => -1])
             ->assertRedirect(route('obat.create'))
-            ->assertSessionHasErrors(['nama_obat', 'kemasan', 'harga']);
+            ->assertSessionHasErrors(['nama_obat', 'kemasan', 'harga', 'stok']);
 
         $this->delete(route('obat.destroy', $obat))
             ->assertRedirect(route('obat.index'))

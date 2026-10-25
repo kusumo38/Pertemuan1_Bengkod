@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -22,6 +21,14 @@ class ExampleTest extends TestCase
             ->assertSee('Register')
             ->assertSee(route('login'), false)
             ->assertSee(route('register'), false);
+    }
+
+    public function test_login_form_posts_to_the_current_host(): void
+    {
+        $this->get('/login')
+            ->assertOk()
+            ->assertSee('action="/login"', false)
+            ->assertSee('name="_token"', false);
     }
 
     public function test_admin_can_login_and_view_dashboard(): void

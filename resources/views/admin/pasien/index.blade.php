@@ -6,6 +6,10 @@
             Data Pasien
         </h2>
 
+        <div class="flex gap-2">
+        <a href="{{ route('admin.export.pasien') }}" class="inline-flex items-center gap-2 rounded-xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-green-700">
+            <i class="fas fa-file-excel"></i> Export Excel
+        </a>
         <a href="{{ route('pasien.create') }}" class="inline-flex items-center gap-2 px-5 py-2.5
                   bg-primary hover:bg-primary/90
                   text-white text-sm font-semibold
@@ -13,6 +17,7 @@
             <i class="fas fa-plus text-xs"></i>
             Tambah Pasien
         </a>
+        </div>
     </div>
 
     {{-- Card --}}
