@@ -92,3 +92,14 @@ Run `php artisan migrate` after pulling the Fast Track changes. New migrations a
 ### Laravel version note
 
 The Fast Track brief names Laravel 13, but this repository currently requires Laravel 12 and the available PHP runtime is 8.2. The feature work keeps the existing supported runtime intact rather than attempting an incompatible framework upgrade.
+
+## Dokumentasi Fitur Aplikasi
+
+### 1. Daftar Poli (Pasien)
+![Daftar Poli Pasien](screenshots_tugas_5/pasien-daftar_poli.png)
+
+### 2. Periksa Pasien (Dokter)
+![Periksa Pasien Dokter](screenshots_tugas_5/dokter-periksa_pasien.png)
+
+### 3. Riwayat Pasien (Dokter)
+![Riwayat Pasien Dokter](screenshots_tugas_5/dokter-riwayat_pasien.png)
